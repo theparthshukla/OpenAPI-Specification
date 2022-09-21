@@ -1,146 +1,131 @@
-openapi: 3.0.0
-info:
-  title: Simple API overview
-  version: 2.0.0
-paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
-      responses:
-        '200':
-          description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
-                    - status: EXPERIMENTAL
-                      updated: '2013-07-23T11:33:21Z'
-                      id: v3.0
-                      links:
-                      - href: http://127.0.0.1:8774/v3/
-                        rel: self
-        '300':
-          description: 300 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value: |
-                    {
-                     "versions": [
-                           {
-                             "status": "CURRENT",
-                             "updated": "2011-01-21T11:33:21Z",
-                             "id": "v2.0",
-                             "links": [
-                                 {
-                                     "href": "http://127.0.0.1:8774/v2/",
-                                     "rel": "self"
-                                 }
-                             ]
-                         },
-                         {
-                             "status": "EXPERIMENTAL",
-                             "updated": "2013-07-23T11:33:21Z",
-                             "id": "v3.0",
-                             "links": [
-                                 {
-                                     "href": "http://127.0.0.1:8774/v3/",
-                                     "rel": "self"
-                                 }
-                             ]
-                         }
-                     ]
-                    }
-  "/v2":
-    get:
-      operationId: getVersionDetailsv2
-      summary: Show API version details
-      responses:
-        '200':
-          description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    version:
-                      status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      media-types:
-                      - base: application/xml
-                        type: application/vnd.openstack.compute+xml;version=2
-                      - base: application/json
-                        type: application/vnd.openstack.compute+json;version=2
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
-                      - href: http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf
-                        type: application/pdf
-                        rel: describedby
-                      - href: http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl
-                        type: application/vnd.sun.wadl+xml
-                        rel: describedby
-                      - href: http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl
-                        type: application/vnd.sun.wadl+xml
-                        rel: describedby
-        '203':
-          description: 203 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    version:
-                      status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      media-types:
-                      - base: application/xml
-                        type: application/vnd.openstack.compute+xml;version=2
-                      - base: application/json
-                        type: application/vnd.openstack.compute+json;version=2
-                      id: v2.0
-                      links:
-                      - href: http://23.253.228.211:8774/v2/
-                        rel: self
-                      - href: http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf
-                        type: application/pdf
-                        rel: describedby
-                      - href: http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl
-                        type: application/vnd.sun.wadl+xml
-                        rel: describedby
-        '204':
-          description: 203 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    version:
-                      status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      media-types:
-                      - base: application/xml
-                        type: application/vnd.openstack.compute+xml;version=2
-                      - base: application/json
-                        type: application/vnd.openstack.compute+json;version=2
-                      id: v2.0
-                      links:
-                      - href: http://23.253.228.211:8774/v2/
-                        rel: self
-                      - href: http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf
-                        type: application/pdf
-                        rel: describedby
-                      - href: http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl
-                        type: application/vnd.sun.wadl+xml
-                        rel: describedby
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-with-examples
+  description: The petstore API
+  tags:
+    - store
+    - rest
+  links:
+    - url: https://github.com/swagger-api/swagger-petstore
+      title: GitHub Repo
+      icon: github
+    - url: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
+      title: API Spec
+      icon: code
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: team-c
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: Swagger Petstore
+      license:
+        name: MIT
+    servers:
+      - url: http://petstore.swagger.io/v1
+    paths:
+      /pets:
+        get:
+          summary: List all pets
+          operationId: listPets
+          tags:
+            - pets
+          parameters:
+            - name: limit
+              in: query
+              description: How many items to return at one time (max 100)
+              required: false
+              schema:
+                type: integer
+                format: int32
+          responses:
+            '200':
+              description: A paged array of pets
+              headers:
+                x-next:
+                  description: A link to the next page of responses
+                  schema:
+                    type: string
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Pets"
+            default:
+              description: unexpected error
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+        post:
+          summary: Create a pet
+          operationId: createPets
+          tags:
+            - pets
+          responses:
+            '201':
+              description: Null response
+            default:
+              description: unexpected error
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+      /pets/{petId}:
+        get:
+          summary: Info for a specific pet
+          operationId: showPetById
+          tags:
+            - pets
+          parameters:
+            - name: petId
+              in: path
+              required: true
+              description: The id of the pet to retrieve
+              schema:
+                type: string
+          responses:
+            '200':
+              description: Expected response to a valid request
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Pet"
+            default:
+              description: unexpected error
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+    components:
+      schemas:
+        Pet:
+          type: object
+          required:
+            - id
+            - name
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+            tag:
+              type: string
+        Pets:
+          type: array
+          items:
+            $ref: "#/components/schemas/Pet"
+        Error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: integer
+              format: int32
+            message:
+              type: string
