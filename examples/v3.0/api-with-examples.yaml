@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: api-woth
-  description: The petstore API
+  name: api-with-examples
+  description: ap with exmaples
   tags:
     - store
     - rest
@@ -10,7 +10,7 @@ metadata:
     - url: https://github.com/swagger-api/swagger-petstore
       title: GitHub Repo
       icon: github
-    - url: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
+    - url: https://github.com/theparthshukla/OpenAPI-Specification/edit/main/examples/v3.0/api-with-examples.yaml
       title: API Spec
       icon: code
 spec:
@@ -21,7 +21,7 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: Swagger Petstore
+      title: Jogodisk Petstore
       license:
         name: MIT
     servers:
