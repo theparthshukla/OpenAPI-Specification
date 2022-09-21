@@ -7,10 +7,10 @@ metadata:
     - store
     - rest
   links:
-    - url: https://github.com/theparthshukla/OpenAPI-Specification
+    - url: https://github.com/swagger-api/swagger-petstore
       title: GitHub Repo
       icon: github
-    - url: https://github.com/theparthshukla/OpenAPI-Specification/edit/main/examples/v3.0/api-with-examples.yaml
+    - url: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
       title: API Spec
       icon: code
 spec:
