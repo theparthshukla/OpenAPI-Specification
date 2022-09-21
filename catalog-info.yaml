@@ -10,3 +10,4 @@ spec:
   owner: team-a
   providesApis:
     - api-with-examples
+    - petstore
