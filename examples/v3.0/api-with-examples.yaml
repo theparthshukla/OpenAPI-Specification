@@ -7,10 +7,10 @@ metadata:
     - store
     - rest
   links:
-    - url: https://github.com/swagger-api/swagger-petstore
+    - url: https://github.com/theparthshukla/OpenAPI-Specification/
       title: GitHub Repo
       icon: github
-    - url: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
+    - url: https://github.com/theparthshukla/OpenAPI-Specification/blob/main/examples/v3.0/api-with-examples.yaml
       title: API Spec
       icon: code
 spec:
@@ -21,7 +21,7 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: Swagger Petstore
+      title: JogodiskManga
       license:
         name: MIT
     servers:
